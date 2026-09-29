@@ -11,11 +11,12 @@
                 linked statically, so it needs no MinGW runtime DLL - only SDL3.dll, which goes beside it
       ceresc    Ceres-C, Release, with link-time optimization, statically linked
       stdlib    the Ceres STDLIB at -O2, built with the ceres and ceresc above: its build leaves stdlib\ and
-                shell\shell.cres laid out as they go in the installation
+                shell\ (shell.cres, and shell-small.cres for the machines that one does not fit) laid out as they
+                go in the installation
 
     and put together in build\windows-x64\stage\Ceres, the directory Ceres is installed as (CERES_PATH):
 
-      ceres.exe  ceresc.exe  SDL3.dll  shell\shell.cres  stdlib\include  stdlib\lib  licenses\
+      ceres.exe  ceresc.exe  SDL3.dll  shell\shell.cres  shell\shell-small.cres  stdlib\include  stdlib\lib  licenses\
       README.txt  LICENSE.txt  VERSION  install.cmd  install.ps1  uninstall.cmd  uninstall.ps1
 
     A smoke test runs from there before anything is packaged: a C program compiled with --stdlib and run, with no
@@ -131,7 +132,7 @@ if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -F
 New-Item -ItemType Directory -Force -Path $stage, "$stage\shell", "$stage\licenses" | Out-Null
 Copy-Item -LiteralPath $ceresExe, $cerescExe -Destination $stage
 if (-not $NoSdl) { Copy-Item -LiteralPath (Join-Path (Split-Path -Parent $ceresExe) 'SDL3.dll') -Destination $stage }
-Copy-Item -LiteralPath (Join-Path $libBuild 'shell\shell.cres') -Destination "$stage\shell"
+Copy-Item -LiteralPath (Join-Path $libBuild 'shell\shell.cres'), (Join-Path $libBuild 'shell\shell-small.cres') -Destination "$stage\shell"
 Copy-Item -LiteralPath (Join-Path $libBuild 'stdlib') -Destination $stage -Recurse
 foreach ($file in 'install.ps1', 'install.cmd', 'uninstall.ps1', 'uninstall.cmd') { Copy-Item -LiteralPath (Join-Path $Package "windows\$file") -Destination $stage }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'LICENSE') -Destination "$stage\LICENSE.txt"

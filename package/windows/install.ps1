@@ -74,7 +74,7 @@ try {
         [System.IO.Compression.ZipFile]::ExtractToDirectory($payload, $temp)
         $source = Join-Path $temp 'Ceres'
     }
-    foreach ($needed in 'ceres.exe', 'ceresc.exe', 'shell\shell.cres', 'stdlib\include') {
+    foreach ($needed in 'ceres.exe', 'ceresc.exe', 'shell\shell.cres', 'shell\shell-small.cres', 'stdlib\include') {
         if (-not (Test-Path -LiteralPath (Join-Path $source $needed))) { throw "this is not a whole Ceres package: $needed is missing from $source" }
     }
     $version = if (Test-Path -LiteralPath (Join-Path $source 'VERSION')) { (Get-Content -LiteralPath (Join-Path $source 'VERSION') -TotalCount 1).Trim() } else { '' }

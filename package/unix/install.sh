@@ -39,7 +39,7 @@ while [ $# -gt 0 ]; do
 done
 
 fail() { echo "Ceres was not installed: $*" >&2; exit 1; }
-for needed in ceres ceresc shell/shell.cres stdlib/include; do
+for needed in ceres ceresc shell/shell.cres shell/shell-small.cres stdlib/include; do
     [ -e "$here/$needed" ] || fail "this is not a whole Ceres package: $needed is missing from $here"
 done
 version=$(head -n 1 "$here/VERSION" 2>/dev/null || echo "")

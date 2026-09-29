@@ -6,7 +6,8 @@ installation of it:
 
   ceres           the virtual machine, assembler, linker and debugger (ceres run, ceres asm, ceres link...)
   ceresc          the C compiler
-  shell/          the Ceres shell, shell.cres: what `ceres run` starts when it is given no program
+  shell/          the Ceres shell, shell.cres: what `ceres run` starts when it is given no program (and
+                  shell-small.cres, the same shell for the machines the first does not fit, such as micro)
   stdlib/         the C library: include/ (its headers) and lib/ (libceres.car, and the optional modules)
   licenses/       the licenses of what is inside
 

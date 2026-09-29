@@ -7,7 +7,7 @@ installers for Windows, Linux and macOS. The ready-made Windows packages are in 
 | --- | --- | --- |
 | The virtual machine, assembler, linker and debugger | [CeresASM](https://github.com/NightTerror1721/Ceres-VM) | `ceres` (and `SDL3.dll` on Windows) |
 | The C compiler | [Ceres-C](https://github.com/NightTerror1721/Ceres-C) | `ceresc` |
-| The C library and the shell | [Ceres STDLIB](https://github.com/NightTerror1721/Ceres-Standard-Library) | `stdlib/`, `shell/shell.cres` |
+| The C library and the shell | [Ceres STDLIB](https://github.com/NightTerror1721/Ceres-Standard-Library) | `stdlib/`, `shell/shell.cres`, `shell/shell-small.cres` |
 
 They are git submodules under `sources/`, pinned to the commits a package is built from.
 
@@ -19,12 +19,14 @@ Ceres lives in one directory, and the `CERES_PATH` environment variable names it
 <CERES_PATH>/
   ceres, ceresc            the tools (ceres.exe, ceresc.exe and SDL3.dll on Windows)
   shell/shell.cres         the shell: what `ceres run` starts when it is given no program
+  shell/shell-small.cres   the same shell, small: for the machines shell.cres does not fit (micro)
   stdlib/include/          the C library's headers
   stdlib/lib/              libceres.car, libceres.decls.casm and the optional modules (libceres_irq.cobj, ...)
   licenses/  README.txt  LICENSE.txt  VERSION  and the uninstaller
 ```
 
-- `ceres run` looks for the shell in `CERES_PATH/shell/shell.cres`, and then beside itself.
+- `ceres run` looks for the shell in `CERES_PATH/shell/`, and then beside itself: `shell.cres`, or `shell-small.cres`
+  on a machine the first does not fit.
 - `ceresc prog.c --stdlib --run` compiles against `CERES_PATH/stdlib` (or the `stdlib/` beside `ceresc`) and links
   `libceres.car`. `ceresc` finds `ceres` in `CERES_PATH`, then beside itself, then on `PATH`.
 

@@ -12,10 +12,11 @@
 #
 # Each repository is built in <build-dir>: CeresASM's ceres (Release, link-time optimization, SDL3 built from source
 # and linked statically), Ceres-C's ceresc (Release, link-time optimization), and the STDLIB at -O2 with those two,
-# whose build leaves stdlib/ and shell/shell.cres laid out as they go in the installation. They are put together in
+# whose build leaves stdlib/ and shell/ (shell.cres, and shell-small.cres for the machines that one does not fit) laid
+# out as they go in the installation. They are put together in
 # <build-dir>/stage/Ceres, the directory Ceres is installed as (CERES_PATH):
 #
-#   ceres  ceresc  shell/shell.cres  stdlib/include  stdlib/lib  licenses/  README.txt  LICENSE.txt  VERSION
+#   ceres  ceresc  shell/shell.cres  shell/shell-small.cres  stdlib/include  stdlib/lib  licenses/  README.txt  LICENSE.txt  VERSION
 #   install.sh  uninstall.sh
 #
 # A smoke test runs from there (a C program compiled with --stdlib and run, with no CERES_PATH, and the shell
@@ -140,7 +141,7 @@ STAGE="$BUILD_DIR/stage/Ceres"
 rm -rf "$BUILD_DIR/stage"
 mkdir -p "$STAGE/shell" "$STAGE/licenses"
 cp "$CERES" "$CERESC" "$STAGE/"
-cp "$BUILD_DIR/stdlib/shell/shell.cres" "$STAGE/shell/"
+cp "$BUILD_DIR/stdlib/shell/shell.cres" "$BUILD_DIR/stdlib/shell/shell-small.cres" "$STAGE/shell/"
 cp -R "$BUILD_DIR/stdlib/stdlib" "$STAGE/"
 cp "$PACKAGE/unix/install.sh" "$PACKAGE/unix/uninstall.sh" "$STAGE/"
 chmod +x "$STAGE/ceres" "$STAGE/ceresc" "$STAGE/install.sh" "$STAGE/uninstall.sh"
