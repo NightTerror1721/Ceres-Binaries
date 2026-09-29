@@ -1,0 +1,17 @@
+# What build.ps1 and build.sh make: the build trees, the staged package and the packages themselves.
+# The packages that are kept are copied into prebuilt/, which is tracked.
+/build/
+/dist/
+
+# Editors and tools
+.vs/
+.vscode/
+.idea/
+*.log
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local notes for coding agents
+AGENTS.md
+CLAUDE.md

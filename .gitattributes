@@ -1,0 +1,14 @@
+* text=auto
+
+# Shell scripts run on Linux and macOS: LF wherever they are checked out.
+*.sh text eol=lf
+# cmd.exe reads batch files with CRLF.
+*.cmd text eol=crlf
+# Compared or typed byte for byte by the smoke test.
+package/smoke/*.expected -text
+package/smoke/*.type -text
+
+# The packages kept in prebuilt/.
+*.zip binary
+*.exe binary
+*.tar.gz binary

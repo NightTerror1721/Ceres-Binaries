@@ -1,0 +1,9 @@
+[submodule "sources/CeresASM"]
+	path = sources/CeresASM
+	url = https://github.com/NightTerror1721/Ceres-VM.git
+[submodule "sources/Ceres-C"]
+	path = sources/Ceres-C
+	url = https://github.com/NightTerror1721/Ceres-C.git
+[submodule "sources/Ceres-STDLIB"]
+	path = sources/Ceres-STDLIB
+	url = https://github.com/NightTerror1721/Ceres-Standard-Library.git
